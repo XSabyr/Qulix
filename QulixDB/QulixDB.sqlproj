@@ -70,6 +70,7 @@
     <None Include="scripts\OrganizationalFormInsert.sql" />
     <None Include="scripts\PositionInsert.sql" />
     <None Include="scripts\WorkerInsert.sql" />
+    <None Include="QulixDB.publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="scripts\Script.PostDeploy.sql" />
