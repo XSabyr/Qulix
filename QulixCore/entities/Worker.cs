@@ -15,10 +15,10 @@ namespace QulixCore
         public DateTime EmploymentDate { get; set; }
 
         public int PositionId { get; set; }
-        public virtual Position Position { get; set; }
+        public Position Position { get; set; }
 
         public int CompanyId { get; set; }
-        public virtual Company Company { get; set; }
+        public Company Company { get; set; }
 
         public override string ToString()
         {
