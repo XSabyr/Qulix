@@ -1,0 +1,66 @@
+﻿@model WorkerEditModel
+
+@{
+    ViewBag.Title = "Edit worker info";
+
+    var positionsList = new List<SelectListItem>();
+    positionsList.AddRange(Model.Positions.Select(x => new SelectListItem(x.Name, x.Id.ToString())));
+
+    var companiesList = new List<SelectListItem>();
+    companiesList.AddRange(Model.Companies.Select(x => new SelectListItem(x.Name, x.Id.ToString())));
+}
+
+<div class="card">
+    <div class="card-header">
+        <h3>Edit worker info</h3>
+    </div>
+    <form asp-action="Edit" method="post">
+        <input asp-for="Id" />
+        <div class="card-body">
+            <div class="form-group">
+                <label asp-for="LastName"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="FirstName"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="FatherName"></label>
+                <input asp-for="FatherName" class="form-control" />
+                <span asp-validation-for="FatherName" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="EmploymentDate"></label>
+                <input type="date" asp-for="EmploymentDate" class="form-control" />
+                <span asp-validation-for="EmploymentDate" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="PositionId"></label>
+                <select asp-for="PositionId" asp-items="positionsList"></select>
+                <span asp-validation-for="PositionId" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="CompanyId"></label>
+                <select asp-for="CompanyId" asp-items="companiesList"></select>
+                <span asp-validation-for="CompanyId" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="card-footer">
+            <input type="submit" class="btn btn-primary" value="Save" />
+            <a asp-action="List" class="btn btn-secondary">Return to list</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

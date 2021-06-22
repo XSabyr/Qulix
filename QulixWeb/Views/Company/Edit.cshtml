@@ -1,0 +1,39 @@
+﻿@model CompanyEditModel
+
+@{
+    ViewBag.Title = "Edit company";
+
+    var list = new List<SelectListItem>();
+    list.AddRange(Model.OrganizationalForms.Select(x => new SelectListItem(x.Name, x.Id.ToString())));
+}
+
+<div class="card">
+    <div class="card-header">
+        <h3>Edit company</h3>
+    </div>
+    <form asp-action="Edit" method="post">
+        <input asp-for="Id" />
+        <div class="card-body">
+            <div class="form-group">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="OrganizationalFormId"></label>
+                <select asp-for="OrganizationalFormId" asp-items="list"></select>
+                <span asp-validation-for="OrganizationalFormId" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="card-footer">
+            <input type="submit" class="btn btn-primary" value="Save" />
+            <a asp-action="List" class="btn btn-secondary">Return to list</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

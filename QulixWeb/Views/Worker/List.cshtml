@@ -1,0 +1,44 @@
+﻿@model WorkerListViewModel
+
+@{
+    ViewBag.Title = "List of workers";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h3>List of companies</h3>
+    </div>
+    <div class="card-body">
+        <table class="table table-striped table-sm table-bordered">
+            <tr>
+                <th>Id</th>
+                <th>Full Name</th>
+                <th>Employment Date</th>
+                <th>Position</th>
+                <th>Company</th>
+                <th class="text-center">Actions</th>
+            </tr>
+            @foreach (var worker in Model.Workers)
+            {
+        <tr>
+            <td>@worker.Id</td>
+            <td>@worker.GetFullName()</td>
+            <td>@worker.GetEmploymentDate()</td>
+            <td>@worker.Position.Name</td>
+            <td>@worker.Company.Name</td>
+            <td class="text-center">
+                <a asp-action="Details" asp-route-id="@worker.Id" class="btn btn-secondary">Details</a>
+                <a asp-action="Edit" asp-route-id="@worker.Id" class="btn btn-secondary">Edit</a>
+                <form asp-action="Delete" style="display: inline">
+                    <input type="hidden" name="id" value="@worker.Id" />
+                    <input type="submit" class="btn btn-secondary" value="Delete" />
+                </form>
+            </td>
+        </tr>
+            }
+        </table>
+    </div>
+    <div class="card-footer">
+        <a asp-action="Add" class="btn btn-secondary">Add a new worker</a>
+    </div>
+</div>
